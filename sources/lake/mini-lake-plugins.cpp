@@ -2,8 +2,7 @@
 
 namespace lake{namespace plugins{
 
-	plugin::plugin(const std::string & path)
-		:_path(path),L(0)
+	plugin::plugin(const std::string & path) :_path(path)
 	{
 		check();//check the plugin contract
 	}
@@ -20,16 +19,6 @@ namespace lake{namespace plugins{
 		stream << "check the plugin failed !!! (path) ==> " << _path << std::endl;
 
 		throw std::runtime_error(stream.str().c_str());
-	}
-
-	void plugin::open_lua()
-	{
-
-	}
-
-	void plugin::close_lua()
-	{
-
 	}
 
 	void plugin::run_goal(pom::project * /*proj*/,const std::string & /*goal*/)

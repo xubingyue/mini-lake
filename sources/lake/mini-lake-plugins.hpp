@@ -12,7 +12,7 @@
 #include <lua/lua.hpp>
 #include <lake/mini-lake-pom.hpp>
 #include <lake/mini-lake-utility.hpp>
-
+#include <lemonxx/luabind/luabind.hpp>
 
 namespace lake{namespace plugins{
 
@@ -30,15 +30,11 @@ namespace lake{namespace plugins{
 		
 		void check();
 
-		void open_lua();
-
-		void close_lua();
-
 	private:
 
-		std::string				_path;
+		std::string							_path;
 
-		lua_State				*L;
+		lemon::luabind::lua_state			_L;
 	};
 
 
