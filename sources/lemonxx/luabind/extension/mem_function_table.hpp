@@ -67,6 +67,12 @@ namespace lemon{namespace luabind{
 
 			handles_type::const_iterator iter,end = _set.end();
 
+			lua_pushnumber(L,1);
+
+			lua_pushlightuserdata(L,data);
+
+			lua_settable(L,-3);
+
 			for(iter = _set.begin(); iter != end; ++ iter)
 			{
 				lua_pushstring(L,iter->first.c_str());
@@ -79,6 +85,21 @@ namespace lemon{namespace luabind{
 
 				lua_settable(L,-3);
 			}
+		}
+
+		void * unwrapper(lua_State * L,int index) const
+		{
+			lua_pushnumber(L,1);
+
+			lua_gettable(L,index - 1);
+
+			luaL_checktype(L,-1,LUA_TLIGHTUSERDATA);
+
+			void * result = lua_touserdata(L,-1);
+
+			lua_pop(L,1);
+
+			return result;
 		}
 
 	private:

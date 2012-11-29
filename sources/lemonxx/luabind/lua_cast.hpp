@@ -62,15 +62,13 @@ namespace lemon{namespace luabind{
 
 		static T * from(lua_State *L,int index)
 		{
-			
-
 			const mem_function_table * calltable = context(L)->register_class(typeid(typename remove_cv<T>::type));
 
 			if(calltable)
 			{
-				luaL_checktype(L,index,LUA_TUSERDATA);
+				luaL_checktype(L,index,LUA_TTABLE);
 
-				return *(T**)lua_touserdata(L,index);
+				return (T*)calltable->unwrapper(L,index);
 			}
 			else
 			{
@@ -177,6 +175,47 @@ namespace lemon{namespace luabind{
 			luaL_checktype(L,index,LUA_TBOOLEAN);
 
 			return lua_toboolean(L,index) ? true : false;
+		}
+	};
+
+	template<typename T> struct lua_cast< std::vector<T> >
+	{
+		static void to(lua_State *L,const std::vector<T> & val)
+		{
+			lua_newtable(L);
+
+			std::vector<T>::const_iterator iter,end = val.end();
+
+			int index = 1;
+
+			for(iter = val.begin(); iter != end; ++ iter)
+			{
+				lua_pushnumber(L,index);
+
+				lua_cast<T>::to(L,*iter);
+
+				lua_settable(L,-3);
+
+				++ index ;
+			}
+		}
+
+		static std::vector<T> from(lua_State *L,int index)
+		{
+			luaL_checktype(L,index,LUA_TTABLE);
+
+			std::vector<T> val;
+
+			lua_pushnil(L); 
+
+			while (lua_next(L, index - 1) != 0)
+			{
+				val.push_back(lua_cast<T>::from(L,-1));
+
+				lua_pop(L, 1);
+			}
+
+			lua_pop(L, 1);
 		}
 	};
 

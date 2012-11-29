@@ -8,19 +8,7 @@
 */
 #include <iostream>
 #include <stdexcept>
-#include <lake/mini-lake-application.hpp>
 
-int main(int args, char ** argv)
+int main(int /*args*/, char ** /*argv*/)
 {
-	try
-	{
-		return lake::application(args,argv).run();
-	}
-	catch(const std::exception & e)
-	{
-		std::cerr << "exception !!!!!!! " << std::endl << "\t" << e.what() << std::endl;
-
-		return 1;
-	}
-	
 }

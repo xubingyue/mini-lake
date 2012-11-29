@@ -20,6 +20,12 @@ namespace lemon{namespace luabind{
 		
 	}
 
+	inline void dofile(lua_State * L,const std::string & file)
+	{
+		if(luaL_dofile(L,file.c_str())) throw std::runtime_error(lua_tostring(L,-1));
+
+	}
+
 	template<typename T>
 	inline void setglobal(lua_State * L ,const char * varname,T t)
 	{
@@ -53,6 +59,17 @@ namespace lemon{namespace luabind{
 #endif //WIN32
 
 		dostring(L,stream.str().c_str());
+	}
+
+	inline void include_cpath(lua_State *L,const std::string& path)
+	{
+		include_cpath(L,path.c_str());
+	}
+
+
+	inline void include_path(lua_State *L,const std::string& path)
+	{
+		include_path(L,path.c_str());
 	}
 }}
 #endif //LEMONXX_LUABIND_LUAPI_HPP
