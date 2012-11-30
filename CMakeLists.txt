@@ -5,6 +5,12 @@ include(CheckCXXSourceRuns)
 
 include(CheckIncludeFileCXX)
 
+include(CheckTypeSize)
+
+include(CheckIncludeFiles)
+
+include(CheckFunctionExists)
+
 
 project(mini-lake)
 
@@ -32,6 +38,18 @@ endforeach()
 
 ########################################################################################################################################
 
+include(${CMAKE_CURRENT_SOURCE_DIR}/sources/lake/inttypes.cmake)
+
+check_function_exists(localtime_r LEMON_HAS_LOCALTIME_R)
+
+check_function_exists(gmtime_r LEMON_HAS_GMTIME_R)
+
+check_function_exists(localtime LEMON_HAS_LOCALTIME)
+
+check_function_exists(gmtime LEMON_HAS_GMTIME)
+
+check_function_exists(gettimeofday LEMON_HAS_GETTIMEOFDAY)
+
 check_cxx_source_runs("void test(int &&){}\n int main(){ return 0;}" LEMON_COMPILER_SUPPORT_RVALUE)
 
 check_cxx_source_runs("struct __declspec(align(1)) test{char a;}; int main(){return 0;} " LEMON_COMPILER_SUPPORT_DECLSPEC_ALIGNED)
@@ -54,9 +72,13 @@ check_cxx_source_runs(" int main(){long long a = 0; return 0;}" LEMON_COMPILER_S
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/sources/lemonxx/configure.h.in ${PROJECT_BINARY_DIR}/build/sources/lemonxx/configure.h IMMEDIATE)
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/sources/lake/configure.h.in ${PROJECT_BINARY_DIR}/build/sources/lake/configure.h IMMEDIATE)
+
 source_group("sources\\lemonxx" FILES ${PROJECT_BINARY_DIR}/build/sources/lemonxx/configure.h)
 
-list(APPEND C_CXX_FILES ${PROJECT_BINARY_DIR}/build/sources/lemonxx/configure.h)
+source_group("sources\\lake" FILES ${PROJECT_BINARY_DIR}/build/sources/lake/configure.h)
+
+list(APPEND C_CXX_FILES ${PROJECT_BINARY_DIR}/build/sources/lemonxx/configure.h ${PROJECT_BINARY_DIR}/build/sources/lake/configure.h)
 
 ########################################################################################################################################
 

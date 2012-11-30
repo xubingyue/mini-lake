@@ -1,0 +1,65 @@
+#ifndef LAKE_CONFIGURE_H
+#define LAKE_CONFIGURE_H
+
+#cmakedefine LEMON_SYSTEM_BIGEND
+
+#cmakedefine LEMON_HAS_LOCALTIME_R
+
+#cmakedefine LEMON_HAS_GMTIME_R
+
+#cmakedefine LEMON_HAS_LOCALTIME
+
+#cmakedefine LEMON_HAS_GMTIME
+
+#cmakedefine LEMON_HAS_GETTIMEOFDAY
+
+#include <errno.h>
+#include <stdio.h>
+
+#ifdef LEMON_HAS_INTTYPES_H
+#	include <inttypes.h>
+#endif 
+
+#ifdef LEMON_HAS_STDINT_H
+#       include <stdint.h>
+#endif //LEMON_HAS_INTTYPES_H
+
+
+#ifdef WIN32
+#	define WIN32_LEAN_AND_MEAN  
+#	include <Windows.h>
+#	include <WinSock2.h>
+#	include <Ws2tcpip.h>
+#	include <tchar.h>
+#	pragma comment(lib,"Ws2_32.lib")
+#else
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#endif //WIN32
+
+namespace lake{
+
+	typedef ${SBYTE_T} sbyte_t;	
+
+	typedef ${BYTE_T} byte_t;	
+
+	typedef ${SBYTE_T} int8_t;	
+
+	typedef ${BYTE_T} uint8_t;	
+
+	typedef ${INT16_T} int16_t;	
+
+	typedef ${UINT16_T} uint16_t;	
+
+	typedef ${INT32_T} int32_t;	
+
+	typedef ${UINT32_T} uint32_t;	
+
+	typedef ${INT64_T} int64_t;	
+
+	typedef ${UINT64_T} uint64_t;
+
+}
+
+#endif //LAKE_CONFIGURE_H
