@@ -1,0 +1,74 @@
+<Package xmlns="http://www.lemon.org/schema/package/2012">
+	
+	<FullName GroupId="org.lemon.lake" ArtifactId="mini-lake" Version="1.0.*"/>
+
+	<!--
+
+	Profile ==> (Release,Beta,Alpha,Demon,Working) 
+
+	the package tools may override this metadata 
+
+	<Profile>Working</Profile> 
+
+	-->
+
+	<!-- The extension metadata -->
+
+	<Data GroupId="org.lemon.lake" ArtifactId="Solution" Version="1.0.*">
+		<!-- Indicate the solution package lake loader plugin -- >
+		<!-- <Loader GroupId="org.lemon.lake" ArtifactId="Solution.Loader" Version="1.0.*"/> -->
+
+		<Lifecycle GroupId="org.lemon.lake" ArtifactId="Standard">
+
+			<Packaging GroupId="org.lemon.lake" ArtifactId="Package" Version="1.0.*"> 
+				<!-- lake packaging plugin args -->
+			</Packaging>
+
+			<Collaborative>
+				<Checkin>
+					<Plugin GroupId="org.lemon.lake" ArtifactId="Git" Version="4.0.*"/>
+					<!-- other plugins <Plugin GroupId="org.lemon.lake" ArtifactId="Git" Version="4.0.*"/> -->
+					<Script language="lua"> 
+						<![CDATA[
+
+						print("git clone git@github.com/mini-lake.git")
+
+						]]>
+					</Script>
+					<!-- or <ScriptFile></ScriptFile> -->
+				</Checkin>
+
+				<Checkin>
+					<Plugin GroupId="org.lemon.lake" ArtifactId="Git" Version="4.0.*"/>
+					<!-- other plugins <Plugin GroupId="org.lemon.lake" ArtifactId="Git" Version="4.0.*"/> -->
+					<Script language="lua"> 
+						<![CDATA[
+
+							
+
+						]]>
+					</Script>
+					<!-- or <ScriptFile></ScriptFile> -->
+				</Checkin>
+			</Collaborative>
+		</Lifecycle>
+
+		<Projects>
+			<Project Path="package://self/sources">
+				<!-- 
+				<OutputDirectory>lake://solution/output/packages</OutputDirectory> 
+				<Dependency>
+					<FullName GroupId="org.lemon.thirdpart" ArtifactId="xercesc" Version="1.0.*"/>
+					<Schema GroupId="org.lemon.lake" ArtifactId="Native" Version="1.0.*"/>
+				</Dependency>
+
+				<Dependency>
+					<FullName GroupId="org.lemon.thirdpart" ArtifactId="ICU" Version="6.0.*"/>
+					<Schema GroupId="org.lemon.lake" ArtifactId="Native"/>
+				</Dependency>
+				-->
+			</Project>
+		</Projects>
+	</Data>
+
+</Package>
