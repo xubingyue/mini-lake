@@ -8,6 +8,7 @@
 */
 #ifndef LAKE_ERROR_INFO_HPP
 #define LAKE_ERROR_INFO_HPP
+#include <sstream>
 #include <stdexcept>
 #include <lake/configure.h>
 #include <lemonxx/utility/utility.hpp>
@@ -35,7 +36,7 @@ namespace lake{namespace error_info{
 
 namespace lake{
 
-	class error_code : public std::runtime_error
+	struct error_code : public std::runtime_error
 	{
 		error_code(const char * message):std::runtime_error(message){}
 

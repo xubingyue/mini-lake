@@ -1,0 +1,6 @@
+<Package xmlns="http://www.lemon.org/schema/package/2012">
+	<FullName GroupId="org.lemon.lake" ArtifactId="lua" />
+
+	<Data GroupId="org.lemon.lake" ArtifactId="lua" Version="1.0.*">
+	</Data>
+</Package>

@@ -100,7 +100,7 @@ endif()
 #disable lua library compile warning on MSVC
 if(WIN32)
 	add_definitions(/WX /W4 /D_UNICODE /DUNICODE)
-	add_definitions(/D_CRT_SECURE_NO_WARNINGS /wd"4244" /wd"4127" /wd"4702" /wd"4324" /wd"4267" /wd"4146")
+	add_definitions(/D_CRT_SECURE_NO_WARNINGS /wd"4244" /wd"4127" /wd"4702" /wd"4324" /wd"4267" /wd"4146" /wd"4100" /wd"4189" /wd"4701")
 endif()
 
 

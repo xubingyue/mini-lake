@@ -1,0 +1,17 @@
+<Package xmlns="http://www.lemon.org/schema/package/2012">
+	<FullName GroupId="org.lemon.lake" ArtifactId="Loaders" />
+
+	<Data GroupId="org.lemon.lake.plugin" ArtifactId="Loader" Version="1.0.*">
+		<Loader GroupId="org.lemon.lake.plugin" ArtifactId="Solution" Version="1.0.*">
+			<Lua>solution.lua</Lua>
+		</Loader>
+
+		<Loader GroupId="org.lemon.lake.plugin" ArtifactId="Source" Version="1.0.*">
+			<Lua>sources.lua</Lua>
+		</Loader>
+
+		<Dependences>
+			<Dependency GroupId="org.lemon.lake" ArtifactId="lua"/>
+		</Dependences>
+	</Data>
+</Package>
